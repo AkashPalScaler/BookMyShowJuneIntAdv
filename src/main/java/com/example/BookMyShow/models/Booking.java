@@ -1,8 +1,6 @@
 package com.example.BookMyShow.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +13,7 @@ import java.util.List;
 public class Booking extends BaseModel{
     private int amount;
     private Date booking_date;
+    @Enumerated(value = EnumType.STRING)
     private BookingStatus bookingStatus;
     //Booking M:1 User
     @ManyToOne
@@ -29,3 +28,6 @@ public class Booking extends BaseModel{
     @ManyToOne
     private Show show;
 }
+
+//BookingStatus: id | value - not created by hibernate
+//Booking: id | amount | booking_date | bookingStatus(0/1/2/3)/(SUCCESS, FAILURE)
